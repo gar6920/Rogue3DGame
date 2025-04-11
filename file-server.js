@@ -111,8 +111,10 @@ router.get("/getRefreshCount", (req, res, next) => {
 router.get("*", (req, res, next) => {
   req.url = replaceEscapeCharacters(req.url);
   req.path = replaceEscapeCharacters(req.path);
+  console.log("Request URL:", req.url); // Log the incoming request URL for debugging
+  console.log("Request Path:", req.path); // Log the path for debugging
   // use req.path, instead of req.url, to discard any query parameter (like webpack hashes)
-  res.sendFile(`${__dirname}` + req.url);
+  res.sendFile(`${__dirname}` + req.path);
 });
 
 const replaceEscapeCharacters = ( text ) => {
